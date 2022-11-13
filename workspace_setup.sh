@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt-get install curl
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 
 # Prepare for installing ros2
