@@ -10,7 +10,7 @@ Package: robotics-metapackage
 Version: 0.1
 Maintainer: Jan Tore Korneliussen <jtkornel@yahoo.no>
 # Pre-Depends: <comma-separated list of packages>
-Depends: simavr, ros-humble-desktop, python3-rosdep
+Depends: simavr, ros-humble-desktop, ros-dev-tools, python3-rosdep
 # Recommends: <comma-separated list of packages>
 # Suggests: <comma-separated list of packages>
 # Provides: <comma-separated list of packages>

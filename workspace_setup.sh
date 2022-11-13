@@ -43,5 +43,7 @@ if [ ! -d "src/moveit2_tutorials" ]; then
 fi
 
 # Install dependencies of MoveIt through rosdep
+source /opt/ros/humble/setup.bash
 cd src
 sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+colcon build --mixin release
