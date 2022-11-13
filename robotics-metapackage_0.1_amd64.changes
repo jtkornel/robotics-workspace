@@ -1,0 +1,26 @@
+Format: 1.8
+Date: Sun, 13 Nov 2022 14:29:56 +0100
+Source: robotics-metapackage
+Binary: robotics-metapackage
+Built-For-Profiles: noudeb
+Architecture: all
+Version: 0.1
+Distribution: unstable
+Urgency: low
+Maintainer: Jan Tore Korneliussen <jtkornel@yahoo.no>
+Changed-By: Jan Tore Korneliussen <jtkornel@yahoo.no>
+Description:
+ robotics-metapackage - Dependencies for ros2 robotics development
+Changes:
+ robotics-metapackage (0.1) unstable; urgency=low
+ .
+   * First version
+Checksums-Sha1:
+ 223a5cb9d1a6285d29cb5a84199347caf11c9738 2096 robotics-metapackage_0.1_all.deb
+ 03658b3eca6ce91872cdc7ddebedfa43b64cf504 7323 robotics-metapackage_0.1_amd64.buildinfo
+Checksums-Sha256:
+ 1ede94b0a906bb8e9712caa23e7a7c79f352c3e52ec063fcb2de711bcf1d796b 2096 robotics-metapackage_0.1_all.deb
+ 970fa2829f82287e5109a653b428cee6a11080e3457bc1355698d7b8ff931cdb 7323 robotics-metapackage_0.1_amd64.buildinfo
+Files:
+ ff42cb1bae6c5c37e50e38089d218400 2096 misc optional robotics-metapackage_0.1_all.deb
+ 07b0e332763393e312e345178a668af8 7323 misc optional robotics-metapackage_0.1_amd64.buildinfo
