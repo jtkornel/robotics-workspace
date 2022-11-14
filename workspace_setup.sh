@@ -4,7 +4,7 @@ curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.
 
 # Prepare for installing ros2
 sudo apt install software-properties-common
-sudo add-apt-repository universe
+sudo add-apt-repository universe -y
 
 sudo apt update && sudo apt install curl gnupg lsb-release
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
@@ -36,11 +36,17 @@ sudo apt install python3-vcstool
 source /opt/ros/humble/setup.bash
 
 
-# Install create_autonomy for iRobot create 2 / Roomba
+# Install create_robot for iRobot create 2 / Roomba
 
-if [ ! -d "src/create_autonomy" ]; then
+if [ ! -d "src/create_robot" ]; then
     cd src
-    git clone https://github.com/AutonomyLab/create_autonomy.git
+    git clone https://github.com/autonomylab/create_robot.git --branch foxy
+    cd -
+fi
+
+if [ ! -d "src/libcreate" ]; then
+    cd src
+    git clone https://github.com/AutonomyLab/libcreate
     cd -
 fi
 
