@@ -18,8 +18,6 @@ sudo apt upgrade
 sudo apt install ./robotics-metapackage_0.1_all.deb
 
 
-# MoveIt installation
-# Taken from https://moveit.picknik.ai/humble/doc/tutorials/getting_started/getting_started.html
 
 # Initialize and update rosdep, the ROS system dependency manager
 sudo rosdep init
@@ -34,17 +32,35 @@ colcon mixin update default
 # Install vcstool
 sudo apt install python3-vcstool
 
-# Check if src/moveit2_tutorials directory exists
-# If not, download source code of moveit and tutorials
-if [ ! -d "src/moveit2_tutorials" ]; then
+# Activate ROS2 environment
+source /opt/ros/humble/setup.bash
+
+
+# Install create_autonomy for iRobot create 2 / Roomba
+
+if [ ! -d "src/create_autonomy" ]; then
     cd src
-    git clone https://github.com/ros-planning/moveit2_tutorials -b humble --depth 1
-    vcs import < moveit2_tutorials/moveit2_tutorials.repos
+    git clone https://github.com/AutonomyLab/create_autonomy.git
     cd -
 fi
 
-# Install dependencies of MoveIt through rosdep
-source /opt/ros/humble/setup.bash
 cd src
-sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
-colcon build --mixin release
+rosdep install --from-paths . -i
+colcon build
+
+# MoveIt installation
+# Taken from https://moveit.picknik.ai/humble/doc/tutorials/getting_started/getting_started.html
+
+# Check if src/moveit2_tutorials directory exists
+# If not, download source code of moveit and tutorials
+#if [ ! -d "src/moveit2_tutorials" ]; then
+#    cd src
+#    git clone https://github.com/ros-planning/moveit2_tutorials -b humble --depth 1
+#    vcs import < moveit2_tutorials/moveit2_tutorials.repos
+#    cd -
+#fi
+
+# Install dependencies of MoveIt through rosdep
+#cd src
+#sudo apt update && rosdep install -r --from-paths . --ignore-src --rosdistro $ROS_DISTRO -y
+#colcon build --mixin release
