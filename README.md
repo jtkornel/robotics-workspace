@@ -1,13 +1,17 @@
 # robotics-workspace
-Template to bootstrap a ROS2 &amp; create_robot workspace on Ubuntu 22.04
+Template to bootstrap a ROS2 &amp; create_robot workspace with docker or native Ubuntu (22.04)
 
-Run `bash workspace_setup.sh` to download and install ROS 2 Humble and build a workspace with create_robot driver for iRobot Create 1/2.
+Either run `bash install_ros2_docker.sh` to install ROS2 docker images (including docker if necessary)
 
-If the build fails with old references you may have to clean up the build cache
+Or run `bash install_ros2_native.sh` to install ROS2 natively (from the robotics-metapackage deb)
+
+
+From the the environment with ROS2 installed, run `bash workspace_setup.sh` to build a ROS2 workspace with create_robot driver for iRobot Create 1/2.
+
+
+NOTE: If the colcon build fails with old references in the ROS2 workspace setup you may have to clean up the cmake build cache
 `colcon build --cmake-clean-cache`
 
-To activate your workspace and start using it you must source the generated setup file:
-`source ./install/setup.bash`
 
 See create_robot instructions here
 https://github.com/AutonomyLab/create_robot/tree/foxy

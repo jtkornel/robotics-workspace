@@ -1,8 +1,11 @@
 #!/bin/bash
+
+export ROS2_VERSION=${ROS2_VERSION:-foxy}
+
 sudo apt-get install curl
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
 
-# Prepare for installing ros2
+# Prepare for installing ros2 packages
 sudo apt install software-properties-common
 sudo add-apt-repository universe -y
 
@@ -13,11 +16,6 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 
 sudo apt update
 sudo apt upgrade
-
-# Install a metapackage with ros2
-sudo apt install ./robotics-metapackage_0.1_all.deb
-
-
 
 # Initialize and update rosdep, the ROS system dependency manager
 sudo rosdep init
@@ -33,7 +31,7 @@ colcon mixin update default
 sudo apt install python3-vcstool
 
 # Activate ROS2 environment
-source /opt/ros/humble/setup.bash
+source /opt/ros/$ROS2_VERSION/setup.bash
 
 # Install create_robot for iRobot create 2 / Roomba
 
