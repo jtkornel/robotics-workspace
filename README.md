@@ -3,13 +3,15 @@ Template to bootstrap a ROS2 &amp; create_robot workspace, with docker or native
 
 ## ROS2 install
 
+Choose between native install (recommended ubuntu 20.04/22.04) or docker install (most linuxes supporting docker)
+
 ### docker
-Either run `bash install_ros2_docker.sh` to install ROS2 docker images (includes installing docker if necessary)
+Run `bash install_ros2_docker.sh` to install ROS2 docker images (includes installing docker if necessary)
 
 To enter the docker container run `bash activate_ros2_docker.sh` - which will mount this workspace on under `/robotics-workspace`
 
 ### native
-Optionally run `bash install_ros2_native.sh` to install ROS2 natively (from the robotics-metapackage deb)
+Run `bash install_ros2_native.sh` to install ROS2 natively (from the robotics-metapackage deb)
 
 ## Workspace with drivers
 
