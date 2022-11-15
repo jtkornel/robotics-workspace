@@ -47,6 +47,6 @@ if [ ! -d "src/libcreate" ]; then
     cd -
 fi
 
-cd src
-rosdep install --from-paths . -i
+rosdep install --from-paths src -i
 colcon build
+echo "Colcon build success! To activate your workspace: source install/setup.bash"
