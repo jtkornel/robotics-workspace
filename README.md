@@ -4,6 +4,7 @@ Template to bootstrap a ROS2 &amp; create_robot workspace, with docker or native
 ## ROS2 install
 
 Either run `bash install_ros2_docker.sh` to install ROS2 docker images (includes installing docker if necessary)
+
 To enter the docker container run `bash activate_ros2_docker.sh` - which will mount this workspace on under `/robotics-workspace`
 
 Optinally run `bash install_ros2_native.sh` to install ROS2 natively (from the robotics-metapackage deb)
