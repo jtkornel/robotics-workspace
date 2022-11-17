@@ -1,5 +1,21 @@
 #!/bin/bash
 
+UBUNTU_VERSION=$(lsb_release -rs)
+if [ $UBUNTU_VERSION == "22.04" ]; then
+    ROS2_DEFAULT_VERSION="humble"
+elif [ $UBUNTU_VERSION == "20.04" ]; then
+    ROS2_DEFAULT_VERSION="foxy"
+elif [ $UBUNTU_VERSION == "18.04" ]; then
+    ROS2_DEFAULT_VERSION="dashing"
+else
+    echo "Unsupported Ubuntu version: $UBUNTU_VERSION"
+    exit 1
+fi
+
+ROS2_VERSION=${ROS2_VERSION:-$ROS2_DEFAULT_VERSION}
+
+echo "Installing ROS2 $ROS2_VERSION"
+
 # Prepare for installing ros2
 sudo apt install software-properties-common
 sudo add-apt-repository universe -y
@@ -12,5 +28,4 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 sudo apt update
 sudo apt upgrade
 
-# Install a metapackage with ros2
-sudo apt install ./robotics-metapackage_0.1_all.deb
+sudo apt install ros-$ROS2_VERSION-desktop ros-dev-tools python3-rosdep python3-colcon-common-extensions -y
