@@ -1,6 +1,18 @@
 #!/bin/bash
 
-export ROS2_VERSION=${ROS2_VERSION:-foxy}
+UBUNTU_VERSION=$(lsb_release -rs)
+if [ $UBUNTU_VERSION == "22.04" ]; then
+    ROS2_DEFAULT_VERSION="humble"
+elif [ $UBUNTU_VERSION == "20.04" ]; then
+    ROS2_DEFAULT_VERSION="foxy"
+elif [ $UBUNTU_VERSION == "18.04" ]; then
+    ROS2_DEFAULT_VERSION="dashing"
+else
+    echo "Unsupported Ubuntu version: $UBUNTU_VERSION"
+    exit 1
+fi
+
+ROS2_VERSION=${ROS2_VERSION:-$ROS2_DEFAULT_VERSION}
 
 sudo apt-get install curl
 curl -fsSL https://raw.githubusercontent.com/arduino/arduino-cli/master/install.sh | sh
@@ -47,6 +59,6 @@ if [ ! -d "src/libcreate" ]; then
     cd -
 fi
 
-rosdep install --from-paths src -i
+rosdep install --from-paths src -i --rosdistro $ROS2_VERSION
 colcon build
 echo "Colcon build success! To activate your workspace: source install/setup.bash"
