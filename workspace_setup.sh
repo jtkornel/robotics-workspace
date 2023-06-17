@@ -35,11 +35,8 @@ sudo apt-get install ros-$ROS2_VERSION-slam-toolbox
 sudo rosdep init
 rosdep update
 
-# Install Colcon the ROS 2 build system, with mixin:
+# Install Colcon the ROS 2 build system
 sudo apt install python3-colcon-common-extensions
-sudo apt install python3-colcon-mixin
-colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
-colcon mixin update default
 
 # Install vcstool
 sudo apt install python3-vcstool
@@ -47,19 +44,8 @@ sudo apt install python3-vcstool
 # Activate ROS2 environment
 source /opt/ros/$ROS2_VERSION/setup.bash
 
-# Install create_robot for iRobot create 2 / Roomba
 
-if [ ! -d "src/create_robot" ]; then
-    cd src
-    git clone https://github.com/autonomylab/create_robot.git --branch foxy
-    cd -
-fi
-
-if [ ! -d "src/libcreate" ]; then
-    cd src
-    git clone https://github.com/AutonomyLab/libcreate
-    cd -
-fi
+vcs import src < robotics.repos
 
 rosdep install --from-paths src -i --rosdistro $ROS2_VERSION
 colcon build
