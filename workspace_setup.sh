@@ -29,6 +29,8 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 sudo apt update
 sudo apt upgrade
 
+sudo apt-get install ros-$ROS2_VERSION-slam-toolbox
+
 # Initialize and update rosdep, the ROS system dependency manager
 sudo rosdep init
 rosdep update
