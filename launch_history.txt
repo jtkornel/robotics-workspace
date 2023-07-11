@@ -1,0 +1,16 @@
+ 3587  2023-07-02 23:50:33 . install/setup.bash
+ 3588  2023-07-02 23:51:29 ros2 run gazebo_ros spawn_entity.py -topic mbot_description -entity mybot
+ 3589  2023-07-02 23:52:03 which python
+ 3590  2023-07-02 23:52:11 pyenv which python
+ 3591  2023-07-02 23:52:20 pyenv versions
+ 3592  2023-07-02 23:52:30 pip install numpy
+ 3593  2023-07-02 23:52:41 ros2 run gazebo_ros spawn_entity.py -topic mbot_description -entity mybot
+ 3594  2023-07-02 23:52:57 pip install lxml
+ 3595  2023-07-02 23:53:02 ros2 run gazebo_ros spawn_entity.py -topic mbot_description -entity mybot
+ 3596  2023-07-02 23:54:56 ros2 run gazebo_ros spawn_entity.py -topic robot_description -entity mybot
+ 3597  2023-07-02 23:56:49 ros2 topic list
+ 3598  2023-07-02 23:57:00 ros2 topic /robot_description
+ 3599  2023-07-02 23:57:13 ros2 topic info /robot_description
+ 3600  2023-07-02 23:57:24 ros2 topic echo /robot_description
+ 3601  2023-07-02 23:57:44 ros2 topic type /robot_description
+ 3602  2023-07-02 23:39:05 ros2 launch mbot_bringup mbot_ranger_dashing_raptor.launch.py sim_gazebo_classic:=true use_mock_hardware:=true --debug
