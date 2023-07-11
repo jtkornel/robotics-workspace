@@ -48,5 +48,5 @@ source /opt/ros/$ROS2_VERSION/setup.bash
 vcs import src < robotics.repos
 
 rosdep install --from-paths src -i --rosdistro $ROS2_VERSION
-colcon build
+colcon build --symlink-install
 echo "Colcon build success! To activate your workspace: source install/setup.bash"
