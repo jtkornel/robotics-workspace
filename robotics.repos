@@ -27,3 +27,7 @@ repositories:
     type: git
     url: https://github.com/StoglRobotics/ros_team_workspace.git
     version: master
+  serial:
+    type: git
+    url: https://github.com/RoverRobotics-forks/serial-ros2
+    version: master
