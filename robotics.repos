@@ -2,7 +2,7 @@ repositories:
   create_robot:
     type: git
     url: https://github.com/autonomylab/create_robot.git
-    version: foxy
+    version: humble
   libcreate:
     type: git
     url: https://github.com/AutonomyLab/libcreate
