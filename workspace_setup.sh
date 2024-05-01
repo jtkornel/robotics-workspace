@@ -26,9 +26,13 @@ sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o
 
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(source /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
 
+sudo curl -sSL https://apt.kitware.com/kitware-archive.sh
+sudo bash kitware-archive.sh 
+
 sudo apt update
 sudo apt upgrade
 
+sudo apt-get install cmake
 sudo apt-get install ros-$ROS2_VERSION-slam-toolbox
 
 # Initialize and update rosdep, the ROS system dependency manager
@@ -48,5 +52,5 @@ source /opt/ros/$ROS2_VERSION/setup.bash
 vcs import src < robotics.repos
 
 rosdep install --from-paths src -i --rosdistro $ROS2_VERSION
-colcon build --symlink-install
+colcon build --symlink-install --executor sequential
 echo "Colcon build success! To activate your workspace: source install/setup.bash"
