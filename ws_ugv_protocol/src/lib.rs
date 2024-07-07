@@ -43,3 +43,69 @@ pub fn write_command(&mut self, msg: CommandMessage)-> Result<usize, io::Error>
 }
 
 }
+
+
+#[cfg(test)]
+mod tests {
+
+    use super::*;
+    use std::io::{Cursor, BufReader};
+    use crate::messages::{FeedbackMessage, BaseInfoData, CommandMessage, SpeedArgs};
+
+    #[test]
+    fn test_read_feedback() {
+        let rx_object = FeedbackMessage::BaseInfo(BaseInfoData{ l: 0.2, r: 0.6, gx: 0.3, gy: 0.4, gz: 0.0, ax: 0.0, ay: 0.0, az: 0.0, r_angle: 0.0, p_angle: 0.0, y_angle: 0.0, q0: 1.0, q1: 0.0, q2: 0.0, q3: 0.0, odl: 0.0, odr: 0.0, v: 11.0, a_b: None, a_s: None, a_e: None, a_t: None, tor_b: None, tor_s: None, tor_e: None, tor_h: None, pan: None, tilt: None});
+        let rx_message = r#"{"T":1001,"L":0.2,"R":0.6,"gx":0.3,"gy":0.4,"gz":0,"ax":0,"ay":0,"az":0,"r":0,"p":0,"y":0,"q0":1.0, "q1":0, "q2":0, "q3":0,"odl":0,"odr":0,"v":11.0}"#;
+        let tx_message: Vec<u8> = Vec::new();
+
+        let rx_buff = BufReader::new(Cursor::new(rx_message));
+        let tx_buff: Cursor<Vec<u8>> = Cursor::new(tx_message);
+
+        let mut comm = UGVComm{ command_writer: tx_buff, feedback_reader: rx_buff};
+
+        let deserialized  = comm.read_feedback();
+
+        assert!(deserialized.is_ok());
+        assert_eq!(deserialized.unwrap(), rx_object);
+    }
+
+    #[test]
+    fn test_read_feedback_empty() {
+        let rx_message = r#""#;
+        let tx_message: Vec<u8> = Vec::new();
+
+        let rx_buff = BufReader::new(Cursor::new(rx_message));
+        let tx_buff = Cursor::new(tx_message);
+
+        let mut comm = UGVComm{ command_writer: tx_buff, feedback_reader: rx_buff};
+
+        let deserialized  = comm.read_feedback();
+
+        assert!(deserialized.is_err());
+    }
+
+    #[test]
+    fn test_write_command() {
+        let rx_message = r#""#;
+        let tx_object = CommandMessage::Speed(SpeedArgs {l: 0.5, r: 0.5});
+        let tx_message: Vec<u8> = Vec::new();
+
+        let rx_buff = BufReader::new(Cursor::new(rx_message));
+        let tx_buff: Cursor<Vec<u8>> = Cursor::new(tx_message);
+
+        let mut comm = UGVComm{ command_writer: tx_buff, feedback_reader: rx_buff};
+
+        // Nothing written initially
+        assert_eq!(comm.command_writer.get_ref().len(), 0);
+
+        let res = comm.write_command(tx_object);
+
+        assert!(res.is_ok());
+        let bytes_written = res.unwrap();
+        assert!(bytes_written > 0);
+        assert_eq!(comm.command_writer.get_ref().len(), bytes_written);
+
+    }
+
+
+}

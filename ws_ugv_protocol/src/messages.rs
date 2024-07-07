@@ -61,48 +61,48 @@ impl Serialize for CommandMessage {
     }
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Debug, PartialEq)]
 pub struct BaseInfoData {
     // Renamings to wire format accepted by UGV
     #[serde(rename = "L")]
-    l: f32,
+    pub l: f32,
     #[serde(rename = "R")]
-    r: f32,
-    gx: f32, gy: f32, gz: f32,
-    ax: f32, ay: f32, az: f32,
+    pub r: f32,
+    pub gx: f32, pub gy: f32, pub gz: f32,
+    pub ax: f32, pub ay: f32, pub az: f32,
     #[serde(rename = "r")]
-    r_angle: f32,
+    pub r_angle: f32,
     #[serde(rename = "p")]
-    p_angle: f32,
+    pub p_angle: f32,
     #[serde(rename = "y")]
-    y_angle: f32,
-    q0: f32, q1: f32, q2: f32, q3: f32,
-    odl: f32, odr: f32,
-    v: f32,
+    pub y_angle: f32,
+    pub q0: f32, pub q1: f32, pub q2: f32, pub q3: f32,
+    pub odl: f32, pub odr: f32,
+    pub v: f32,
     #[serde(rename = "ab")]
-    a_b: Option<f32>,
+    pub a_b: Option<f32>,
     #[serde(rename = "as")]
-    a_s: Option<f32>,
+    pub a_s: Option<f32>,
     #[serde(rename = "ae")]
-    a_e: Option<f32>,
+    pub a_e: Option<f32>,
     #[serde(rename = "at")]
-    a_t: Option<f32>,
+    pub a_t: Option<f32>,
     #[serde(rename = "torB")]
-    tor_b: Option<f32>,
+    pub tor_b: Option<f32>,
     #[serde(rename = "torS")]
-    tor_s: Option<f32>,
+    pub tor_s: Option<f32>,
     #[serde(rename = "torE")]
-    tor_e: Option<f32>,
+    pub tor_e: Option<f32>,
     #[serde(rename = "torH")]
-    tor_h: Option<f32>,
-    pan: Option<f32>, tilt: Option<f32>
+    pub tor_h: Option<f32>,
+    pub pan: Option<f32>, pub tilt: Option<f32>
 }
 
 impl BaseInfoData {
     const TAG: i64 = 1001;
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq)]
 pub enum FeedbackMessage {
     BaseInfo(BaseInfoData)
 }
