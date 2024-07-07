@@ -35,6 +35,7 @@ pub fn read_feedback(&mut self) -> Result<FeedbackMessage, io::Error>
 }
 
 // Write a command message to the UGV
+// Returns the number of bytes written
 pub fn write_command(&mut self, msg: CommandMessage)-> Result<usize, io::Error>
 {
     let json_msg = serde_json::to_string(&msg)?;
