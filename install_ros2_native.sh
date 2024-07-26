@@ -29,4 +29,5 @@ sudo apt update
 sudo apt upgrade
 
 sudo apt install "ros-$ROS2_VERSION-desktop" ros-dev-tools python3-rosdep python3-colcon-common-extensions -y
+sudo apt install "ros-$ROS2_VERSION-control" "ros-$ROS2_VERSION-controllers"
 sudo apt install "ros-$ROS2_VERSION-navigation2" "ros-$ROS2_VERSION-nav2-bringup"
