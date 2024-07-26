@@ -63,9 +63,9 @@ mod tests {
 
     #[test]
     fn test_read_feedback_empty() {
-        let mut comm = create_fake_writer();
-
-        let deserialized  = read_feedback(&mut comm);
+        let empty_message: Vec<u8> = Vec::new();
+        let mut reader = Cursor::new(empty_message);
+        let deserialized  = read_feedback(&mut reader);
 
         assert!(deserialized.is_err());
     }
