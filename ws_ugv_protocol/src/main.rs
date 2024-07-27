@@ -1,18 +1,26 @@
 use std::io::BufReader;
 
-
 use ws_ugv_protocol::messages::*;
 use ws_ugv_protocol::*;
 
-use std::io::Cursor;
+use serial2::SerialPort;
 
 fn main() {
+    let readport = SerialPort::open("/dev/serial0", 115200).unwrap();
+    let mut reader = BufReader::new(readport);
 
-    let port = serialport::new("/dev/ttyUSB0", 9600).open().unwrap();
+    let mut writeport = SerialPort::open("/dev/serial0", 115200).unwrap();
+    writeport.set_rts(false).unwrap();
+    writeport.set_dtr(false).unwrap();
 
-    //let mut comm = UGVComm{ command_writer: &port, feedback_reader: BufReader::new(port) };
+    let flow_off = CommandMessage::SetBaseFeedbackFlow(BaseFeedbackFlowArgs {cmd: 0});
+    let _ = write_command(& mut writeport, flow_off);
 
-    //let deserialized : FeedbackMessage = comm.read_feedback().unwrap();
+    let _ = write_command(& mut writeport, CommandMessage::GetBaseFeedback);
+    let msg = read_feedback(& mut reader).unwrap();
+    println!("Received message: {:?}", msg);
 
-    //println!("{:?}", deserialized);
+    let _ = write_command(& mut writeport, CommandMessage::GetIMUData);
+    let msg = read_feedback(& mut reader).unwrap();
+    println!("Received message: {:?}", msg);
 }

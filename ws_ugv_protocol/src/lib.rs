@@ -27,6 +27,7 @@ pub fn write_command<W: Write>(writer: & mut W, msg: CommandMessage)-> Result<us
 {
     let json_msg = serde_json::to_string(&msg)?;
     let num_bytes = writer.write(json_msg.as_bytes())?;
+    writer.write(b"\n")?;
     Ok(num_bytes)
 }
 

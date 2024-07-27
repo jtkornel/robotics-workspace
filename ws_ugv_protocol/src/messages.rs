@@ -169,16 +169,16 @@ pub struct BaseInfoData {
     pub l: f32,
     #[serde(rename = "R")]
     pub r: f32,
-    pub gx: f32, pub gy: f32, pub gz: f32,
-    pub ax: f32, pub ay: f32, pub az: f32,
+    pub gx: Option<f32>, pub gy: Option<f32>, pub gz: Option<f32>,
+    pub ax: Option<f32>, pub ay: Option<f32>, pub az: Option<f32>,
     #[serde(rename = "r")]
     pub r_angle: f32,
     #[serde(rename = "p")]
     pub p_angle: f32,
     #[serde(rename = "y")]
-    pub y_angle: f32,
-    pub q0: f32, pub q1: f32, pub q2: f32, pub q3: f32,
-    pub odl: f32, pub odr: f32,
+    pub y_angle: Option<f32>,
+    pub q0: Option<f32>, pub q1: Option<f32>, pub q2: Option<f32>, pub q3: Option<f32>,
+    pub odl: Option<f32>, pub odr: Option<f32>,
     pub v: f32,
     #[serde(rename = "ab")]
     pub a_b: Option<f32>,
